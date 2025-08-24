@@ -1,351 +1,305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FemFlow – Movimento leve, rotina mais fluida</title>
-  <meta name="description" content="FemFlow: método feminino de adaptação ao movimento com leveza, autocuidado e constância. E-book, protocolos de respiração e programas online." />
-  <meta name="theme-color" content="#335953" />
+  <title>FemFlow — Movimento, Consciência e Ritmo</title>
+  $1  <link rel="canonical" href="https://mylifeflow.com.br/" />
+  <meta name="theme-color" content="#f6e7dd" />
   <!-- Open Graph -->
-  <meta property="og:title" content="FemFlow – Movimento leve, rotina mais fluida" />
-  <meta property="og:description" content="Método feminino baseado em leveza, autocuidado e constância. Conheça o eBook FemFlow 15 Dias." />
+  <meta property="og:title" content="FemFlow — Movimento, Consciência e Ritmo" />
+  <meta property="og:description" content="Método de treinamento feminino baseado no ciclo hormonal." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="" />
-  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:url" content="https://mylifeflow.com.br/" />
+
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
-    /* =========================
-       BASE & TOKENS DE DESIGN
-       ========================= */
     :root{
-      /* Paleta pôr do sol */
-      --creme: #F4E1D7;      /* off‑white rosado / creme rosé */
-      --pessego: #EFBDA6;    /* pêssego claro / rosa chá */
-      --terracota: #CC6A5A;  /* terracota rosado / rosewood */
-      --teal: #335953;       /* teal petróleo profundo */
-      --text: #203233;       /* texto escuro suave */
-      --muted: #5C6A6A;      /* texto de apoio */
-      --white: #ffffff;
-      --shadow: 0 10px 25px rgba(0,0,0,.08);
-      --radius: 18px;
-      --radius-sm: 12px;
-      --maxw: 1160px;
+      /* Paleta do moodboard FemFlow (pôr do sol + teal) */
+      --vanilla:#f6e7dd;        /* faixa 1 */
+      --peach:#f7d2c5;          /* faixa 2 */
+      --rosewood:#cc7b77;       /* faixa 3 (terracota rosada) */
+      --teal:#0d5e62;           /* faixa 4 (azul petróleo esverdeado) */
+      --ink:#1e1e1e;            /* texto principal */
+      --muted:#6b6b6b;          /* texto secundário */
+      --white:#ffffff;
     }
-
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{
-      font-family: Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-      color: var(--text);
-      background: var(--creme);
-      line-height: 1.55;
-      text-rendering: optimizeLegibility;
+      margin:0; font-family:Lato, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink); background:var(--vanilla);
     }
-    img{max-width:100%;display:block;border-radius:var(--radius-sm)}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    .grid{display:grid;gap:24px}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.25rem;border-radius:999px;background:var(--teal);color:#fff;font-weight:700;border:2px solid var(--teal);transition:.2s ease;box-shadow:var(--shadow)}
-    .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
-    .btn.outline{background:transparent;color:var(--teal)}
-    .tag{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .75rem;border-radius:999px;background:rgba(51,89,83,.08);color:var(--teal);font-weight:700;font-size:.85rem}
+    /* Layout helpers */
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    .grid{display:grid; gap:24px}
+    .btn{display:inline-block; padding:14px 20px; border-radius:14px; text-decoration:none; font-weight:700}
+    .btn-primary{background:var(--teal); color:var(--white)}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{border:2px solid var(--teal); color:var(--teal)}
+    .badge{padding:6px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.4px; background:#0d5e6216; color:var(--teal)}
+    .card{background:var(--white); border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,.06); padding:24px}
+    .section{padding:72px 0}
 
-    /* =========================
-       CABEÇALHO / NAVEGAÇÃO
-       ========================= */
-    header{
-      position: sticky; top: 0; z-index: 50;
-      background: linear-gradient(180deg, rgba(244,225,215,.92), rgba(244,225,215,.86));
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(32,50,51,.06);
+    /* Header */
+    header{position:sticky; top:0; z-index:20; background:rgba(246,231,221,.8); backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid #00000010}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; gap:10px; align-items:center; font-weight:900; letter-spacing:.3px}
+    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, var(--peach), var(--rosewood)); position:relative}
+    .logo::after{content:""; position:absolute; inset:4px; border-radius:6px; background:linear-gradient(135deg, #ffffffaa, #ffffff00)}
+    nav a{color:var(--ink); text-decoration:none; font-weight:700; margin-left:18px}
+    nav a:hover{color:var(--teal)}
+    .mobile-toggle{display:none; background:none; border:none; font-size:24px}
+
+    /* Hero */
+    .hero{padding:96px 0; background:linear-gradient(180deg, var(--vanilla), #ffffffaa),
+           radial-gradient(1200px 600px at 80% -10%, #f7d2c580, transparent 60%),
+           radial-gradient(900px 500px at -10% 10%, #cc7b7740, transparent 50%)}
+    .hero h1{font-family:"Playfair Display", serif; font-size:clamp(32px, 6vw, 54px); line-height:1.1; margin:0 0 16px}
+    .hero p{font-size:18px; color:var(--muted); max-width:680px}
+    .hero .cta{margin-top:24px; display:flex; gap:12px; flex-wrap:wrap}
+
+    /* Features */
+    .features{grid-template-columns:repeat(3, 1fr)}
+    .feature h3{margin:12px 0 6px}
+    .feature p{color:var(--muted)}
+    .feature .icon{width:40px;height:40px;border-radius:12px;background:#0d5e6212;display:grid;place-items:center;font-weight:900;color:var(--teal)}
+
+    /* Split section */
+    .split{grid-template-columns:1.1fr .9fr; align-items:center}
+    .illus{aspect-ratio:4/3; border-radius:20px; background:linear-gradient(135deg, var(--peach), var(--rosewood)); position:relative; overflow:hidden}
+    .illus::after{content:""; position:absolute; inset:0; background:radial-gradient(600px 300px at 80% 20%, #ffffffcc, transparent 60%)}
+
+    /* Pricing */
+    .pricing{grid-template-columns:repeat(3,1fr)}
+    .price h4{margin:0 0 6px}
+    .price .tag{font-size:36px; font-weight:900; color:var(--teal)}
+    .price ul{margin:16px 0 0; padding:0; list-style:none}
+    .price li{display:flex; gap:10px; align-items:flex-start; margin:8px 0; color:#333}
+
+    /* Testimonials */
+    .testi{grid-template-columns:repeat(3,1fr)}
+    blockquote{margin:0}
+    blockquote p{font-style:italic; color:#333}
+
+    /* Footer */
+    footer{background:var(--teal); color:var(--white)}
+    footer a{color:#cfeeed; text-decoration:none}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .features, .pricing, .testi{grid-template-columns:1fr 1fr}
+      .split{grid-template-columns:1fr}
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
-    .brand{display:flex;align-items:center;gap:.6rem;font-family:'Playfair Display', serif;font-weight:700;color:var(--teal);font-size:1.35rem}
-    .wave{width:26px;height:16px;display:inline-block}
-    nav ul{list-style:none;display:flex;align-items:center;gap:22px;margin:0;padding:0}
-    nav a{font-weight:700;color:#1e2c2d}
-    .mobile-toggle{display:none;background:transparent;border:none}
-
-    /* =========================
-       HERO
-       ========================= */
-    .hero{background: linear-gradient(180deg, var(--pessego), rgba(239,189,166,.78)), url('') center/cover no-repeat;}
-    .hero .wrap{display:grid;grid-template-columns: 1.1fr .9fr;align-items:center;gap:40px;padding:80px 0}
-    .hero h1{font-family:'Playfair Display',serif;font-size: clamp(2rem, 4.6vw, 3.4rem);line-height:1.1;margin:0;color:var(--teal)}
-    .hero p{color:#203233;font-size:1.1rem;margin:.9rem 0 1.6rem}
-    .hero-card{background: var(--creme);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow)}
-
-    /* =========================
-       FEATURES (3 COLUNAS)
-       ========================= */
-    .features{background: var(--creme);padding:42px 0}
-    .feat{display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:var(--radius-sm);padding:18px;border:1px solid rgba(32,50,51,.06);box-shadow:var(--shadow)}
-    .feat svg{flex-shrink:0;color:var(--teal)}
-
-    /* =========================
-       SOBRE
-       ========================= */
-    section{padding:72px 0}
-    h2{font-family:'Playfair Display',serif;font-size: clamp(1.6rem, 3.2vw, 2.2rem);margin:0 0 14px;color:var(--teal)}
-    .muted{color:var(--muted)}
-
-    /* =========================
-       PRODUTOS
-       ========================= */
-    .cards{grid-template-columns: repeat(12, 1fr)}
-    .card{grid-column: span 12;background:#fff;border-radius:var(--radius);padding:22px;border:1px solid rgba(32,50,51,.06);box-shadow:var(--shadow)}
-    .card h3{font-family:'Playfair Display',serif;margin:.2rem 0;color:var(--text)}
-    .card .cta{margin-top:.6rem}
-
-    /* =========================
-       BLOG
-       ========================= */
-    .post{background:#fff;border:1px solid rgba(32,50,51,.06);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow)}
-    .post .content{padding:16px}
-
-    /* =========================
-       CONTATO
-       ========================= */
-    .contact{background: var(--teal);color:#eaf0ee}
-    .contact h2{color:#fff}
-    .form{display:grid;gap:14px}
-    .input, textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background: rgba(255,255,255,.08);color:#fff}
-    .input::placeholder, textarea::placeholder{color:rgba(255,255,255,.7)}
-
-    /* =========================
-       FOOTER
-       ========================= */
-    footer{background: #234341;color:#d7e4e1}
-    .footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding:22px 0}
-    .social a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
-
-    /* =========================
-       RESPONSIVO
-       ========================= */
-    @media (max-width: 960px){
-      .hero .wrap{grid-template-columns: 1fr; padding:56px 0}
-      nav ul{display:none}
+    @media (max-width: 640px){
+      .features, .pricing, .testi{grid-template-columns:1fr}
+      nav{display:none}
+      nav.open{display:block; position:absolute; inset:64px 0 auto 0; background:var(--vanilla); padding:16px 20px; border-bottom:1px solid #00000010}
+      nav.open a{display:block; margin:12px 0}
       .mobile-toggle{display:block}
-      .cards{grid-template-columns:1fr}
-    }
-    @media (min-width: 640px){
-      .features .grid{grid-template-columns: repeat(3, 1fr)}
-      .cards .card{grid-column: span 4}
-      .blog .grid{grid-template-columns: repeat(3, 1fr)}
     }
   </style>
 </head>
 <body>
-  <!-- ========== HEADER ========== -->
   <header>
-    <div class="container nav" role="navigation" aria-label="Principal">
-      <a href="#topo" class="brand" aria-label="FemFlow – início">
-        <svg class="wave" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M2 16c8-10 16-10 24 0s16 10 20-2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
         <span>FemFlow</span>
-      </a>
-      <button class="mobile-toggle" aria-label="Abrir menu" aria-expanded="false" onclick="toggleMenu()">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-      <nav>
-        <ul id="menu">
-          <li><a href="#metodo">Método</a></li>
-          <li><a href="#produtos">Produtos</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
+      </div>
+      <button class="mobile-toggle" aria-label="Abrir menu" id="menuBtn">☰</button>
+      <nav id="menu">
+        <a href="#metodo">Método</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
       </nav>
     </div>
   </header>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero" id="topo" aria-label="Apresentação">
-    <div class="container wrap">
-      <div>
-        <span class="tag">Programa de 15 dias</span>
-        <h1>Movimento leve, rotina mais fluida</h1>
-        <p>Retome sua energia com um pacto gentil de constância e autocuidado. 15 min de prática + 5 min de respiração.</p>
-        <a class="btn" href="#ebook" aria-label="Começar agora">Comece agora</a>
-      </div>
-      <div class="hero-card" aria-hidden="true" style="min-height:240px;background: linear-gradient(135deg, var(--creme), var(--pessego) 50%, var(--terracota));"></div>
-    </div>
-  </section>
-
-  <!-- ========== FEATURES ========== -->
-  <div class="features" aria-label="Pilares do método">
-    <div class="container grid">
-      <div class="feat">
-        <svg width="36" height="36" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 16c8-10 16-10 24 0s16 10 20-2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-        <div>
-          <strong>Adaptação leve</strong>
-          <div class="muted">Comece pequeno, mantenha o prazer e a segurança.</div>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <span class="badge">Novo • Treine com o seu ciclo</span>
+        <h1>Um método de treino feminino <br/> que respeita o seu ritmo</h1>
+        <p>O FemFlow integra ciência do exercício e consciência hormonal para organizar treinos por fases do ciclo. Resultado: mais energia, menos atrito e progresso sustentável.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#planos">Começar agora</a>
+          <a class="btn btn-ghost" href="#metodo">Como funciona</a>
         </div>
       </div>
-      <div class="feat">
-        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 20a14 14 0 1 1-7-12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M34 6v8h-8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    </section>
+
+    <section class="section" id="metodo">
+      <div class="container grid split">
         <div>
-          <strong>Conexão com o corpo</strong>
-          <div class="muted">Respeito aos sinais, ao ciclo e ao descanso.</div>
+          <span class="badge">Essência</span>
+          <h2 style="font-family:'Playfair Display',serif; font-size:36px; margin:12px 0 8px">Treinar com o corpo, não contra ele</h2>
+          <p style="color:var(--muted)">Periodização em 4 fases (menstrual, folicular, ovulatória, lútea) com ajustes de volume e intensidade. Sessões com aquecimento, bloco principal, resfriamento e micropráticas de respiração.</p>
+          <div class="grid features" style="margin-top:16px">
+            <div class="feature card">
+              <div class="icon">1</div>
+              <h3>Diagnóstico</h3>
+              <p>Ritmo, histórico e preferências para traçar uma base realista.</p>
+            </div>
+            <div class="feature card">
+              <div class="icon">2</div>
+              <h3>Plano cíclico</h3>
+              <p>Volume e intensidade modulados por fase. Menos lesão, mais constância.</p>
+            </div>
+            <div class="feature card">
+              <div class="icon">3</div>
+              <h3>Feedback</h3>
+              <p>Ajustes semanais via PSE e diário rápido de sensações.</p>
+            </div>
+          </div>
         </div>
+        <div class="illus" aria-hidden="true"></div>
       </div>
-      <div class="feat">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/></svg>
-        <div>
-          <strong>Constância com prazer</strong>
-          <div class="muted">Direção > intensidade. Um passo por dia.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- ========== SOBRE ========== -->
-  <section id="metodo" aria-labelledby="titulo-sobre" style="background:linear-gradient(180deg, var(--creme), rgba(255,255,255,0))">
-    <div class="container grid" style="grid-template-columns:1.1fr .9fr;align-items:center">
-      <div>
-        <h2 id="titulo-sobre">Por que o FemFlow existe?</h2>
-        <p>O FemFlow nasceu para mulheres que querem retomar o movimento sem pressão. Um pacto curto e gentil para reconstruir hábitos com leveza. Você pratica 15 minutos de movimento acessível e finaliza com 5 minutos de presença e respiração.</p>
-        <p class="muted">Mais que estética ou performance: é sobre <strong>prioridade</strong>, <strong>consciência</strong> e <strong>cuidado</strong> contínuos.</p>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?q=80&w=1400&auto=format&fit=crop" alt="Mulher alongando ao pôr do sol" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PRODUTOS ========== -->
-  <section id="produtos" aria-labelledby="titulo-produtos" style="background:linear-gradient(180deg, rgba(239,189,166,.35), rgba(204,106,90,.15))">
-    <div class="container">
-      <h2 id="titulo-produtos">O que você encontra aqui</h2>
-      <div class="grid cards">
-        <article id="ebook" class="card" aria-labelledby="ebook-title">
-          <span class="tag" aria-hidden="true">Favorito</span>
-          <h3 id="ebook-title">eBook FemFlow 15 Dias</h3>
-          <p class="muted">Plano leve de 15 dias para recomeçar com segurança. Sessões curtas, frases-espelho e respirações guiadas.</p>
-          <div class="cta"><a class="btn" href="#" aria-label="Baixar eBook FemFlow 15 Dias">Baixar eBook</a></div>
-        </article>
-        <article class="card" aria-labelledby="respira-title">
-          <h3 id="respira-title">RespiraFlow – Cards de respiração</h3>
-          <p class="muted">Protocolos rápidos para foco, clareza e regulação emocional. Perfeitos para pausas no trabalho.</p>
-          <div class="cta"><a class="btn outline" href="#" aria-label="Saiba mais sobre RespiraFlow">Saiba mais</a></div>
-        </article>
-        <article class="card" aria-labelledby="programas-title">
-          <h3 id="programas-title">Programas online</h3>
-          <p class="muted">Aulas leves e guiadas para criar constância. Opções para diferentes níveis e rotinas.</p>
-          <div class="cta"><a class="btn outline" href="#" aria-label="Ver programas online">Ver programas</a></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== BLOG ========== -->
-  <section id="blog" class="blog" aria-labelledby="titulo-blog">
-    <div class="container">
-      <h2 id="titulo-blog">Conteúdo para você</h2>
-      <div class="grid" style="margin-top:14px">
-        <article class="post">
-          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1400&auto=format&fit=crop" alt="Caderno e chá sobre mesa"/>
-          <div class="content">
-            <h3 style="margin:.2rem 0;font-family:'Playfair Display',serif">Treino e ciclo menstrual</h3>
-            <p class="muted">Como modular esforço e descanso em cada fase.</p>
+    <section class="section" id="beneficios">
+      <div class="container">
+        <h2 style="font-family:'Playfair Display',serif; font-size:36px; margin:0 0 16px">Benefícios reais</h2>
+        <div class="grid features">
+          <div class="card">
+            <h3>Mais energia</h3>
+            <p>Aproveite os picos naturais sem sobrecarregar nas fases sensíveis.</p>
           </div>
-        </article>
-        <article class="post">
-          <img src="https://images.unsplash.com/photo-1517260739337-6799d3c1d3e0?q=80&w=1400&auto=format&fit=crop" alt="Mulher respirando profundamente"/>
-          <div class="content">
-            <h3 style="margin:.2rem 0;font-family:'Playfair Display',serif">Respiração para foco</h3>
-            <p class="muted">3 protocolos de 2 minutos para clareza cognitiva.</p>
+          <div class="card">
+            <h3>Resultados sustentáveis</h3>
+            <p>Consistência que dura, com progressão de 10–15% planejada.</p>
           </div>
-        </article>
-        <article class="post">
-          <img src="https://images.unsplash.com/photo-1498550744921-75f79806b8a7?q=80&w=1400&auto=format&fit=crop" alt="Caminhada ao entardecer"/>
-          <div class="content">
-            <h3 style="margin:.2rem 0;font-family:'Playfair Display',serif">Autocuidado sem culpa</h3>
-            <p class="muted">Pequenos rituais para manter a constância.</p>
-          </div>
-        </article>
-      </div>
-      <div style="margin-top:18px"><a class="btn outline" href="#" aria-label="Ver todos os artigos do blog">Ver todos os artigos</a></div>
-    </div>
-  </section>
-
-  <!-- ========== CONTATO ========== -->
-  <section id="contato" class="contact" aria-labelledby="titulo-contato">
-    <div class="container">
-      <h2 id="titulo-contato">Fale com a gente</h2>
-      <div class="grid" style="grid-template-columns: 1.1fr .9fr;align-items:start">
-        <form class="form" onsubmit="return handleSubmit(event)">
-          <input class="input" type="text" name="nome" placeholder="Nome" aria-label="Nome" required />
-          <input class="input" type="email" name="email" placeholder="E-mail" aria-label="E-mail" required />
-          <textarea class="input" name="mensagem" rows="4" placeholder="Mensagem" aria-label="Mensagem" required></textarea>
-          <button class="btn" type="submit">Enviar</button>
-          <div class="muted" style="font-size:.9rem">Ao enviar, você concorda com nossa política de privacidade.</div>
-        </form>
-        <div>
-          <p>Prefere falar direto?</p>
-          <div class="social" style="display:flex;gap:12px;margin-top:10px">
-            <a href="#" aria-label="Instagram FemFlow" title="Instagram">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-            </a>
-            <a href="#" aria-label="WhatsApp FemFlow" title="WhatsApp">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.52 3.48A11.8 11.8 0 0 0 12 0 12 12 0 0 0 2.64 20.49L0 24l3.63-2.58A12 12 0 1 0 20.52 3.48z"></path></svg>
-            </a>
-            <a href="#" aria-label="YouTube FemFlow" title="YouTube">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.42a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 2C5.12 20 12 20 12 20s6.88 0 8.59-.42a2.78 2.78 0 0 0 1.95-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
-            </a>
+          <div class="card">
+            <h3>Saúde em primeiro lugar</h3>
+            <p>Treino aliado à regulação emocional e ao sono.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== FOOTER ========== -->
+    <section class="section" id="planos">
+      <div class="container">
+        <h2 style="font-family:'Playfair Display',serif; font-size:36px; margin:0 0 8px">Planos</h2>
+        <p style="color:var(--muted)">Escolha o formato que combina com o seu momento.</p>
+        <div class="grid pricing" style="margin-top:16px">
+          <div class="card price">
+            <h4>Essencial</h4>
+            <div class="tag">R$ 0</div>
+            <small>Guia introdutório de 15 dias</small>
+            <ul>
+              <li>✔ PDF com treinos e respiratórios</li>
+              <li>✔ Checklists semanais</li>
+              <li>— Suporte por WhatsApp</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#contato">Baixar guia</a></div>
+          </div>
+          <div class="card price" style="border:2px solid #0d5e6220">
+            <h4>Assinatura</h4>
+            <div class="tag">R$ 79/mês</div>
+            <small>Planos cíclicos + ajustes</small>
+            <ul>
+              <li>✔ Treinos por fase do ciclo</li>
+              <li>✔ Atualizações mensais</li>
+              <li>✔ Acesso a vídeos curtos</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn btn-primary" href="#contato">Começar</a></div>
+          </div>
+          <div class="card price">
+            <h4>Personal</h4>
+            <div class="tag">Sob consulta</div>
+            <small>1:1 com planilha e feedback</small>
+            <ul>
+              <li>✔ Avaliação completa</li>
+              <li>✔ Ajustes semanais</li>
+              <li>✔ Canal direto</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#contato">Falar com a equipe</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="depoimentos">
+      <div class="container">
+        <h2 style="font-family:'Playfair Display',serif; font-size:36px; margin:0 0 16px">O que dizem</h2>
+        <div class="grid testi">
+          <div class="card"><blockquote><p>“Finalmente um método que conversa com meu corpo.”</p><cite>— Ana L.</cite></blockquote></div>
+          <div class="card"><blockquote><p>“Parei de brigar com o ciclo e evoluí sem me machucar.”</p><cite>— Camila R.</cite></blockquote></div>
+          <div class="card"><blockquote><p>“Os respiratórios me salvaram nos dias difíceis.”</p><cite>— Beatriz S.</cite></blockquote></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <div class="container grid split">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif; font-size:36px; margin:0 0 8px">Fale com a gente</h2>
+          <p style="color:var(--muted)">Tire dúvidas, receba o guia gratuito ou peça sua avaliação. Resposta em até 24h úteis.</p>
+          <form class="card" action="#" method="post" onsubmit="alert('Formulário enviado! Substitua action por seu endpoint (Formspree, Netlify Forms, etc.).'); return false;">
+            <label>Nome<br/><input type="text" name="nome" required style="width:100%; padding:12px; border:1px solid #00000018; border-radius:12px; margin-top:6px"></label>
+            <label style="margin-top:12px">Email<br/><input type="email" name="email" required style="width:100%; padding:12px; border:1px solid #00000018; border-radius:12px; margin-top:6px"></label>
+            <label style="margin-top:12px">Mensagem<br/><textarea name="mensagem" rows="4" style="width:100%; padding:12px; border:1px solid #00000018; border-radius:12px; margin-top:6px"></textarea></label>
+            <button class="btn btn-primary" style="margin-top:14px" type="submit">Enviar</button>
+            <p style="font-size:12px; color:var(--muted); margin-top:8px">Ao enviar, você concorda com a <a href="#politica" style="color:var(--teal); text-decoration:underline">Política de Privacidade</a>.</p>
+          </form>
+          <p style="margin-top:12px">Ou fale direto no WhatsApp: <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener" style="color:var(--teal); font-weight:700">iniciar conversa</a></p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Informações</h3>
+          <ul style="list-style:none; padding:0; margin:12px 0 0; color:var(--muted)">
+            <li>📍 São Paulo, Brasil</li>
+            <li>⏱ Atendimento: seg–sex, 9h–18h</li>
+            <li>✉️ contato@mylifeflow.com.br</li>
+          </ul>
+          <div style="height:12px"></div>
+          <h4>LGPD</h4>
+          <p>Coletamos apenas dados necessários para contato. Você pode solicitar exclusão a qualquer momento.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="politica">
+      <div class="container">
+        <h2 style="font-family:'Playfair Display',serif; font-size:32px; margin:0 0 8px">Política de Privacidade</h2>
+        <div class="card">
+          <p style="color:var(--muted)">Coletamos nome, e‑mail e mensagem exclusivamente para retorno de contato e envio de materiais solicitados. Não compartilhamos seus dados com terceiros. Você pode solicitar correção ou exclusão escrevendo para <strong>contato@mylifeflow.com.br</strong>.</p>
+          <p style="color:var(--muted)">Base legal: consentimento e legítimo interesse (LGPD, Lei nº 13.709/2018). Retenção por até 12 meses ou até revogação do consentimento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="termos">
+      <div class="container">
+        <h2 style="font-family:'Playfair Display',serif; font-size:32px; margin:0 0 8px">Termos de Uso</h2>
+        <div class="card">
+          <p style="color:var(--muted)">Este site e seus conteúdos possuem caráter informativo. Os materiais de treino não substituem avaliação médica. Ao utilizar os formulários, você concorda com o tratamento de dados conforme a Política de Privacidade. Poderemos atualizar estes termos sem aviso prévio.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
   <footer>
-    <div class="container footer">
-      <div>&copy; <span id="year"></span> FemFlow • Todos os direitos reservados</div>
-      <div class="social" aria-label="Redes sociais">
-        <a href="#" title="Instagram" aria-label="Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d7e4e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        </a>
-        <a href="#" title="WhatsApp" aria-label="WhatsApp">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d7e4e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.52 3.48A11.8 11.8 0 0 0 12 0 12 12 0 0 0 2.64 20.49L0 24l3.63-2.58A12 12 0 1 0 20.52 3.48z"></path></svg>
-        </a>
-        <a href="#" title="YouTube" aria-label="YouTube">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d7e4e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.42a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 2C5.12 20 12 20 12 20s6.88 0 8.59-.42a2.78 2.78 0 0 0 1.95-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
-        </a>
+    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; justify-content:space-between; padding:30px 0">
+      <div>&copy; <span id="year"></span> FemFlow. Todos os direitos reservados.</div>
+      <div style="display:flex; gap:16px">
+        <a href="#politica">Política de Privacidade</a>
+        <a href="#termos">Termos de Uso</a>
       </div>
     </div>
   </footer>
 
   <script>
-    const year = document.getElementById('year');
-    if(year) year.textContent = new Date().getFullYear();
-
-    function toggleMenu(){
-      const menu = document.getElementById('menu');
-      const btn = document.querySelector('.mobile-toggle');
-      const open = getComputedStyle(menu).display === 'none';
-      menu.style.display = open ? 'flex' : 'none';
-      menu.style.flexDirection = 'column';
-      menu.style.background = 'var(--creme)';
-      menu.style.position = 'absolute';
-      menu.style.top = '74px';
-      menu.style.right = '20px';
-      menu.style.padding = '14px 18px';
-      menu.style.border = '1px solid rgba(32,50,51,.08)';
-      menu.style.borderRadius = '12px';
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    function handleSubmit(e){
-      e.preventDefault();
-      const form = e.target;
-      const nome = form.nome.value.trim();
-      alert(`Obrigado, ${nome || 'obrigada(o)'}! Vamos responder em breve.`);
-      form.reset();
-      return false;
-    }
+    // Menu mobile
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    btn?.addEventListener('click', ()=> menu.classList.toggle('open'));
+    // Ano no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
