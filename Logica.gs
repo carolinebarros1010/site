@@ -293,7 +293,7 @@ function resolverDiaTreino(params) {
 
   // PERFIS BIOLÓGICOS
   return {
-    fase: fasePorDiaCiclo(diaCiclo),
+    fase: fasePorDiaCiclo_(diaCiclo),
     diaTreino: diaCiclo,
     fonte: "ciclo"
   };
