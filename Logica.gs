@@ -271,7 +271,9 @@ function _resolverPerfil(id) {
   }
   return null;
 }
-function resolverDiaTreino({ perfilHormonal, nivel, diaCiclo, diaPrograma }) {
+function resolverDiaTreino(params) {
+  params = params || {};
+  const { perfilHormonal, nivel, diaCiclo, diaPrograma } = params;
 
   // PERFIL ENERGÉTICO
   if (perfilHormonal === "energetico") {
