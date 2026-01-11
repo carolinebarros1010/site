@@ -190,6 +190,9 @@ function _fazerLogin(data) {
       sh.getRange(i + 1, COL_DIA_PROGRAMA + 1).setValue(1);
     }
 
+    // 🔄 Sync de ciclo no login (atualiza DiaCiclo/Fase se permitido)
+    const syncResult = sync(id);
+
     return {
       status: "ok",
       id: id,
@@ -198,8 +201,8 @@ function _fazerLogin(data) {
       licencaAtiva: true,
       nivel: nivel,
       enfase: enfase,
-      fase: fase,
-      diaCiclo: diaCiclo,
+      fase: syncResult && syncResult.fase ? syncResult.fase : fase,
+      diaCiclo: syncResult && syncResult.diaCiclo ? syncResult.diaCiclo : diaCiclo,
       perfilHormonal: perfilHormonal,
       produto: produto,
       personal: row[COL_ACESSO_PERSONAL] === true,
