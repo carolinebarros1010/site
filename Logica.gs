@@ -491,7 +491,8 @@ function sync(id) {
 
     sh.getRange(linha, 15).setValue(ciclo.dia);
 
-    const faseAtual = calcularEFixarFase_(idNorm);
+    const faseAtual = fasePorDiaCiclo_(ciclo.dia);
+    sh.getRange(linha, 14).setValue(faseAtual);
 
     return {
       status: "ok",
