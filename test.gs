@@ -125,7 +125,11 @@ function testarSistemaFemFlow() {
 
 function salvarResultadoTeste_(id, resumo, lista) {
 
-  const sh = _sheet("TESTES", true); // true = cria se não existir
+  const ss = SpreadsheetApp.getActive();
+  let sh = ss.getSheetByName("TESTES");
+  if (!sh) {
+    sh = ss.insertSheet("TESTES");
+  }
 
   if (sh.getLastRow() === 0) {
     sh.appendRow([
