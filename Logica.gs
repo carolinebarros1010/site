@@ -1,14 +1,16 @@
 /* ============================================================
  * 🌙 STARGATE — CÁLCULO REAL DO CICLO FEMFLOW 2025
  * ============================================================ */
-function calcularCicloReal({
-  startDate,
-  cicloDuracao,
-  perfilHormonal,
-  nivel,
-  faseSalva,
-  diaCicloSalvo
-}) {
+function calcularCicloReal(params) {
+  params = params || {};
+  const {
+    startDate,
+    cicloDuracao,
+    perfilHormonal,
+    nivel,
+    faseSalva,
+    diaCicloSalvo
+  } = params;
   const hoje = new Date();
 
   // 🛑 1. Corrigir datas ruins
