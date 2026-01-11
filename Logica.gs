@@ -457,22 +457,24 @@ function sync(id) {
     const perfilHormonal = String(vals[i][19] || "regular").toLowerCase();
     const nivel = String(vals[i][8] || "iniciante").toLowerCase();
 
-    if (!(dataInicio instanceof Date) || isNaN(dataInicio.getTime())) {
+    const dataInicioDate =
+      dataInicio instanceof Date ? dataInicio : new Date(dataInicio);
+    const manualStartDate =
+      manualStart instanceof Date ? manualStart : new Date(manualStart);
+
+    const hasManualStart =
+      manualStart instanceof Date && !isNaN(manualStart.getTime());
+    const hasDataInicio =
+      dataInicio instanceof Date && !isNaN(dataInicio.getTime());
+
+    const startBase = hasManualStart ? manualStartDate : dataInicioDate;
+
+    if (!(startBase instanceof Date) || isNaN(startBase.getTime())) {
       return { status: "error", msg: "invalid_data_inicio" };
     }
 
-    if (manualStart instanceof Date && !isNaN(manualStart.getTime())) {
-      return {
-        status: "ok",
-        modo: "manual",
-        diaCiclo: Number(vals[i][14] || 1),
-        fase: String(vals[i][13] || "menstrual"),
-        dataInicio
-      };
-    }
-
     const ciclo = calcularCicloReal({
-      startDate: dataInicio,
+      startDate: startBase,
       cicloDuracao,
       perfilHormonal,
       nivel,
@@ -486,10 +488,10 @@ function sync(id) {
 
     return {
       status: "ok",
-      modo: "auto",
+      modo: hasManualStart ? "manual" : "auto",
       diaCiclo: ciclo.dia,
       fase: faseAtual,
-      dataInicio
+      dataInicio: hasDataInicio ? dataInicio : startBase
     };
   }
 
