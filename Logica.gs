@@ -1,14 +1,16 @@
 /* ============================================================
  * 🌙 STARGATE — CÁLCULO REAL DO CICLO FEMFLOW 2025
  * ============================================================ */
-function calcularCicloReal({
-  startDate,
-  cicloDuracao,
-  perfilHormonal,
-  nivel,
-  faseSalva,
-  diaCicloSalvo
-}) {
+function calcularCicloReal(params) {
+  params = params || {};
+  const {
+    startDate,
+    cicloDuracao,
+    perfilHormonal,
+    nivel,
+    faseSalva,
+    diaCicloSalvo
+  } = params;
   const hoje = new Date();
 
   // 🛑 1. Corrigir datas ruins
@@ -269,7 +271,9 @@ function _resolverPerfil(id) {
   }
   return null;
 }
-function resolverDiaTreino({ perfilHormonal, nivel, diaCiclo, diaPrograma }) {
+function resolverDiaTreino(params) {
+  params = params || {};
+  const { perfilHormonal, nivel, diaCiclo, diaPrograma } = params;
 
   // PERFIL ENERGÉTICO
   if (perfilHormonal === "energetico") {
@@ -289,7 +293,7 @@ function resolverDiaTreino({ perfilHormonal, nivel, diaCiclo, diaPrograma }) {
 
   // PERFIS BIOLÓGICOS
   return {
-    fase: fasePorDiaCiclo(diaCiclo),
+    fase: fasePorDiaCiclo_(diaCiclo),
     diaTreino: diaCiclo,
     fonte: "ciclo"
   };
@@ -425,4 +429,71 @@ else fase = "luteal";
   }
 
   return null;
+}
+
+/**
+ * 🔄 SYNC — Atualiza DiaCiclo/Fase com base em DataInicio
+ * - Respeita ManualStart (col 21)
+ * - Usa cálculo oficial de fase
+ * - Retorna estado atualizado para o front
+ */
+function sync(id) {
+  const sh = _sheet(SHEET_ALUNAS);
+  if (!sh) return { status: "error", msg: "sheet_not_found" };
+
+  const idNorm = String(id || "").trim();
+  if (!idNorm) return { status: "error", msg: "missing_id" };
+
+  const vals = sh.getDataRange().getValues();
+
+  for (let i = 1; i < vals.length; i++) {
+    if (String(vals[i][0]).trim() !== idNorm) continue;
+
+    const linha = i + 1;
+
+    const dataInicio = vals[i][10]; // col 11
+    const cicloDuracao = Number(vals[i][9] || 28); // col 10
+    const manualStart = vals[i][20]; // col 21
+    const perfilHormonal = String(vals[i][19] || "regular").toLowerCase();
+    const nivel = String(vals[i][8] || "iniciante").toLowerCase();
+
+    const dataInicioDate =
+      dataInicio instanceof Date ? dataInicio : new Date(dataInicio);
+    const manualStartDate =
+      manualStart instanceof Date ? manualStart : new Date(manualStart);
+
+    const hasManualStart =
+      manualStart instanceof Date && !isNaN(manualStart.getTime());
+    const hasDataInicio =
+      dataInicio instanceof Date && !isNaN(dataInicio.getTime());
+
+    const startBase = hasManualStart ? manualStartDate : dataInicioDate;
+
+    if (!(startBase instanceof Date) || isNaN(startBase.getTime())) {
+      return { status: "error", msg: "invalid_data_inicio" };
+    }
+
+    const ciclo = calcularCicloReal({
+      startDate: startBase,
+      cicloDuracao,
+      perfilHormonal,
+      nivel,
+      faseSalva: vals[i][13],
+      diaCicloSalvo: vals[i][14]
+    });
+
+    sh.getRange(linha, 15).setValue(ciclo.dia);
+
+    const faseAtual = calcularEFixarFase_(idNorm);
+
+    return {
+      status: "ok",
+      modo: hasManualStart ? "manual" : "auto",
+      diaCiclo: ciclo.dia,
+      fase: faseAtual,
+      dataInicio: hasDataInicio ? dataInicio : startBase
+    };
+  }
+
+  return { status: "notfound", id: idNorm };
 }
