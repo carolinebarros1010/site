@@ -41,8 +41,15 @@ function calcularCicloReal(params) {
 
   const nivelNorm = (nivel || "iniciante").toLowerCase();
 
- // ✅ PERFIS ENERGÉTICO / MENOPAUSA / DIU HORMONAL
+ // ✅ PERFIS REGULAR / DIU / ENERGÉTICO / MENOPAUSA
 // Agora seguem o MESMO ciclo fisiológico de 28 dias (treinos no Firebase = 1..28).
+if (perfil === "regular" || perfil === "diu") {
+  if (dia <= 5)  return { fase: "menstrual", dia };
+  if (dia <= 13) return { fase: "follicular", dia };
+  if (dia <= 17) return { fase: "ovulatory", dia };
+  return { fase: "luteal", dia: Math.max(18, dia) };
+}
+
 if (perfil === "energetico" || perfil === "menopausa" || perfil === "diu_hormonal") {
   const d = ((diff % cicloDuracao) + cicloDuracao) % cicloDuracao + 1;
 
